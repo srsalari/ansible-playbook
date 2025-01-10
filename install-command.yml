@@ -1,0 +1,14 @@
+---
+- name: Install wget
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Install wget
+      command: yum install wget -y
+      creates: /usr/bin/wget
+      register: wget_installed
+    - name: Print wget installation status
+      debug:
+        msg: "wget is installed"
+      when: wget_installed.changed == false
+        
