@@ -1,5 +1,5 @@
 ---
-- name: Install Apache on Agnet Node
+- name: Install Apache on Agent Node
   hosts: webservers
   become: yes
   tasks:
@@ -13,5 +13,10 @@
         name: httpd
         state: starts
         enabled: yes
+        
+    - name: Copy index.html
+      copy:
+        src: index.html
+        dest: /var/www/html/index.html
 
   
